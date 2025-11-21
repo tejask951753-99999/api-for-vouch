@@ -53,9 +53,16 @@ async def save_vouch(vouch: dict):
 async def get_vouches():
     return load_vouches()
 
+@app.delete("/delete/all")
+def delete_all():
+    save_vouches([])
+    return {"status": "all deleted"}
+
+
 # ====================================================
 # TEST ROUTE
 # ====================================================
 @app.get("/")
 async def home():
     return {"message": "Vouch API running", "routes": ["/vouch", "/vouches"]}
+
